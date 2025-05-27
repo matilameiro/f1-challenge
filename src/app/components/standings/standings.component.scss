@@ -1,0 +1,400 @@
+.standings-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    button {
+      min-width: 200px;
+      height: 40px;
+      font-size: 1.1rem;
+    }
+  }
+
+  .standings-form {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 12px;
+
+    @media (max-width: 768px) {
+      padding: 15px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nz-form-item {
+        flex: 1;
+        width: 50%;
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+
+        ::ng-deep {
+          .ant-select {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .form-actions {
+      text-align: center;
+      margin-top: 24px;
+
+      button {
+        min-width: 200px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .podium-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    margin: 40px 0;
+    min-height: 300px;
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .podium-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .position {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #1890ff;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .podium-box {
+        width: 120px;
+        background: #f5f5f5;
+        border-radius: 8px 8px 0 0;
+        padding: 16px;
+        text-align: center;
+        position: relative;
+
+        @media (max-width: 768px) {
+          width: 100px;
+          padding: 12px;
+        }
+
+        .name {
+          font-weight: bold;
+          margin-bottom: 8px;
+          color: #333;
+        }
+
+        .points {
+          color: #666;
+          font-size: 0.9rem;
+        }
+      }
+
+      &:nth-child(1) .podium-box {
+        height: 200px;
+        background: linear-gradient(to bottom, #ffd700, #f5f5f5);
+      }
+
+      &:nth-child(2) .podium-box {
+        height: 160px;
+        background: linear-gradient(to bottom, #c0c0c0, #f5f5f5);
+      }
+
+      &:nth-child(3) .podium-box {
+        height: 120px;
+        background: linear-gradient(to bottom, #cd7f32, #f5f5f5);
+      }
+
+      &:nth-child(4) .podium-box {
+        height: 100px;
+      }
+
+      &:nth-child(5) .podium-box {
+        height: 80px;
+      }
+    }
+  }
+
+  .no-standings {
+    text-align: center;
+    padding: 40px 20px;
+  }
+}
+
+.standings-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding: 16px 0;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.standing-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &.position-1 {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    .position-number {
+      color: #B8860B;
+    }
+  }
+
+  &.position-2 {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%);
+    .position-number {
+      color: #696969;
+    }
+  }
+
+  &.position-3 {
+    background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+    .position-number {
+      color: #654321;
+    }
+  }
+
+  &.position-4, &.position-5 {
+    background: linear-gradient(135deg, #E8E8E8 0%, #D3D3D3 100%);
+    .position-number {
+      color: #808080;
+    }
+  }
+}
+
+.standing-header {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  .position-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .driver-name {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+  }
+
+  .team-name {
+    font-size: 1rem;
+    color: #666;
+    margin: 4px 0 0;
+  }
+}
+
+.standing-details {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.9);
+
+  p {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span:first-child {
+      font-weight: 500;
+      color: #333;
+    }
+
+    span:last-child {
+      color: #666;
+    }
+  }
+}
+
+// Estilos para el spinner de carga
+::ng-deep .ant-spin-container {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Ajustes para dispositivos móviles
+@media (max-width: 480px) {
+  .standings-container {
+    padding: 10px;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .standings-form {
+      padding: 12px;
+
+      .form-row {
+        margin-bottom: 12px;
+      }
+
+      .form-actions {
+        margin-top: 16px;
+      }
+    }
+
+    .podium-container {
+      .podium-item {
+        .podium-box {
+          width: 80px;
+          padding: 8px;
+
+          .name {
+            font-size: 0.9rem;
+          }
+
+          .points {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #1a1a1a;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+nz-card {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+nz-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+select {
+  margin-left: 8px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  font-size: 1rem;
+}
+
+select:focus {
+  outline: none;
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
+}
+
+th {
+  background: #fafafa !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+}
+
+td {
+  color: #666 !important;
+}
+
+tr:hover td {
+  background: #f5f5f5 !important;
+}
+
+.other-positions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.position-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: #f0f2f5;
+  border-radius: 8px;
+  min-width: 300px;
+
+  .position {
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+  }
+
+  .info {
+    flex: 1;
+
+    .name {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .points {
+      font-size: 14px;
+      color: #666;
+    }
+  }
+} 

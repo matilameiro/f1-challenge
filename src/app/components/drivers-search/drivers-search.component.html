@@ -1,0 +1,39 @@
+<div class="drivers-search-container">
+  <div class="search-header">
+    <h1>Búsqueda de Pilotos</h1>
+    <div class="search-input">
+      <input
+        nz-input
+        [(ngModel)]="searchTerm"
+        placeholder="Buscar piloto (mínimo 4 letras)..."
+        (ngModelChange)="onSearchInput($event)"
+      />
+    </div>
+    <p class="search-hint">Ingresa al menos 4 letras para buscar pilotos específicos</p>
+  </div>
+
+  <nz-spin [nzSpinning]="loading" nzTip="Cargando pilotos...">
+    <div *ngIf="!loading && searchTerm.length >= 4 && drivers.length === 0" class="no-results">
+      <nz-empty nzNotFoundContent="No se encontraron pilotos"></nz-empty>
+    </div>
+
+    <div *ngIf="drivers.length > 0 && searchTerm.length >= 4" class="drivers-grid">
+      <nz-card *ngFor="let driver of drivers" class="driver-card">
+        <div class="driver-header">
+          <nz-avatar [nzSize]="64">{{ driver.shortName }}</nz-avatar>
+          <div class="driver-info">
+            <h3>{{ driver.name }} {{ driver.surname }}</h3>
+            <p class="driver-number" *ngIf="driver.number">#{{ driver.number }}</p>
+          </div>
+        </div>
+        <div class="driver-stats">
+          <p><strong>Nacionalidad:</strong> {{ driver.nationality }}</p>
+          <p><strong>Fecha de nacimiento:</strong> {{ driver.birthday }}</p>
+        </div>
+        <div class="driver-actions">
+          <a [href]="driver.url" target="_blank" nz-button nzType="primary">Saber más</a>
+        </div>
+      </nz-card>
+    </div>
+  </nz-spin>
+</div> 

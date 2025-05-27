@@ -1,0 +1,31 @@
+<div class="team-drivers-container">
+  <h1>Pilotos de {{ team?.teamName }}</h1>
+
+  <nz-spin [nzSpinning]="loading">
+    <div class="drivers-grid" *ngIf="drivers.length > 0">
+      <div *ngFor="let driver of drivers" class="driver-card">
+        <div class="driver-header">
+          <div class="driver-number">{{ driver.number }}</div>
+          <div class="driver-info">
+            <h3>{{ driver.name }} {{ driver.surname }}</h3>
+            <div class="driver-nationality">{{ driver.nationality }}</div>
+          </div>
+        </div>
+        <div class="driver-details">
+          <p>
+            <strong>Fecha de nacimiento:</strong>
+            {{ driver.birthday }}
+          </p>
+          <p>
+            <strong>Nacionalidad:</strong>
+            {{ driver.nationality }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-drivers" *ngIf="!loading && drivers.length === 0">
+      <p>No hay pilotos disponibles para este equipo.</p>
+    </div>
+  </nz-spin>
+</div> 

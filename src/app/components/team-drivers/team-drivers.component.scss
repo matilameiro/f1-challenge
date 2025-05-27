@@ -1,0 +1,94 @@
+.team-drivers-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  .drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 24px 0;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 16px 0;
+    }
+  }
+
+  .driver-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .driver-header {
+      padding: 20px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .driver-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #1890ff;
+      }
+
+      .driver-info {
+        flex: 1;
+
+        h3 {
+          margin: 0;
+          font-size: 1.2rem;
+          color: #333;
+        }
+
+        .driver-nationality {
+          color: #666;
+          font-size: 0.9rem;
+          margin-top: 4px;
+        }
+      }
+    }
+
+    .driver-details {
+      padding: 20px;
+
+      p {
+        margin: 8px 0;
+        color: #666;
+
+        strong {
+          color: #333;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  .no-drivers {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+  }
+}
+
+// Estilos para el spinner de carga
+::ng-deep .ant-spin-container {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+} 

@@ -1,0 +1,21 @@
+<div class="teams-container">
+  <h1>Equipos de Fórmula 1 - {{ currentYear }}</h1>
+  
+  <nz-spin [nzSpinning]="loading">
+    <div class="teams-grid">
+      <nz-card *ngFor="let team of teams" class="team-card">
+        <h2 class="team-name">{{ team.teamName }}</h2>
+        <h3 class="team-nationality">{{ team.teamNationality }}</h3>
+        <div class="team-info">
+          <p data-label="Primera aparición: ">{{ team.firstAppeareance !== undefined ? team.firstAppeareance : 'N/A' }}</p>
+          <p data-label="Campeonatos de Constructores: ">{{ team.constructorsChampionships || 0 }}</p>
+          <p data-label="Campeonatos de Pilotos: ">{{ team.driversChampionships || 0 }}</p>
+        </div>
+        <div class="card-actions">
+          <a [href]="team.url" target="_blank" nz-button nzType="primary">Saber más</a>
+          <a [routerLink]="['/teams', team.teamId, 'drivers']" nz-button nzType="link">Conocer conductores</a>
+        </div>
+      </nz-card>
+    </div>
+  </nz-spin>
+</div> 

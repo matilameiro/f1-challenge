@@ -1,0 +1,58 @@
+<div class="standings-container">
+  <h1>Posiciones - {{ standingsForm.get('year')?.value || 'Seleccionar año' }}</h1>
+
+  <form [formGroup]="standingsForm" (ngSubmit)="loadStandings()" class="standings-form">
+    <div class="form-row">
+      <nz-form-item>
+        <nz-select
+          formControlName="year"
+          nzPlaceHolder="Seleccionar año"
+          nzAllowClear="false">
+          <nz-option *ngFor="let year of years" [nzValue]="year.toString()" [nzLabel]="year.toString()"></nz-option>
+        </nz-select>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-select
+          formControlName="type"
+          nzPlaceHolder="Seleccionar tipo"
+          nzAllowClear="false">
+          <nz-option nzValue="drivers" nzLabel="Pilotos"></nz-option>
+          <nz-option nzValue="constructors" nzLabel="Equipos"></nz-option>
+        </nz-select>
+      </nz-form-item>
+    </div>
+
+    <div class="form-actions">
+      <button nz-button nzType="primary" type="submit" [nzLoading]="loading">
+        Buscar Posiciones
+      </button>
+    </div>
+  </form>
+
+  <nz-spin [nzSpinning]="loading">
+    <div class="standings-grid" *ngIf="standings.length > 0">
+      <div *ngFor="let standing of standings" 
+           class="standing-card"
+           [ngClass]="'position-' + standing.position">
+        <div class="standing-header">
+          <div class="position-number">{{ standing.position }}</div>
+          <h3 class="driver-name">{{ getStandingName(standing) }}</h3>
+          <p class="team-name" *ngIf="selectedType === 'drivers'">
+            {{ getTeamName(standing) }}
+          </p>
+        </div>
+        <div class="standing-details">
+          <p>
+            <span>Puntos</span>
+            <span>{{ standing.points }}</span>
+          </p>
+          <p>
+            <span>Victorias</span>
+            <span>{{ standing.wins }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </nz-spin>
+</div> 

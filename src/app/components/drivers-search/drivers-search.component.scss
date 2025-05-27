@@ -1,0 +1,186 @@
+.drivers-search-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .search-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .search-input {
+      max-width: 500px;
+      margin: 0 auto;
+      
+      input {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 2px solid #d9d9d9;
+        transition: all 0.3s;
+
+        &:focus {
+          border-color: #1890ff;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+      }
+    }
+
+    .search-hint {
+      margin-top: 0.5rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+  }
+
+  .search-message {
+    text-align: center;
+    padding: 24px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin: 24px;
+
+    p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+  }
+
+  .drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      padding: 10px 0;
+    }
+
+    .driver-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 12px;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .driver-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 16px;
+
+        nz-avatar {
+          background: #1890ff;
+          color: white;
+          font-weight: bold;
+        }
+
+        .driver-info {
+          flex: 1;
+
+          h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.4;
+          }
+
+          .driver-number {
+            margin: 4px 0 0;
+            color: #666;
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .driver-stats {
+        margin-bottom: 16px;
+        padding: 12px;
+        background: #f5f5f5;
+        border-radius: 8px;
+
+        p {
+          margin: 8px 0;
+          color: #666;
+          font-size: 0.9rem;
+
+          strong {
+            color: #333;
+          }
+        }
+      }
+
+      .driver-actions {
+        text-align: center;
+
+        a {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 40px 20px;
+  }
+}
+
+// Estilos para el spinner de carga
+::ng-deep .ant-spin-container {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Ajustes para dispositivos móviles
+@media (max-width: 480px) {
+  .drivers-search-container {
+    padding: 10px;
+
+    .search-header {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .search-input {
+        input {
+          padding: 8px;
+          font-size: 0.9rem;
+        }
+      }
+
+      .search-hint {
+        font-size: 0.8rem;
+      }
+    }
+
+    .driver-card {
+      .driver-header {
+        .driver-info {
+          h3 {
+            font-size: 1.1rem;
+          }
+        }
+      }
+
+      .driver-stats {
+        padding: 8px;
+        
+        p {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+} 
