@@ -71,24 +71,24 @@ export class StandingsComponent implements OnInit {
 
       if (type === 'drivers') {
         this.f1Service.getDriverStandings(year).subscribe({
-      next: (response) => {
-        this.standings = response.drivers_championship.slice(0, 5);
-        this.loading = false;
-      },
-      error: (error) => {
-        this.loading = false;
-      }
-    });
+          next: (response) => {
+            this.standings = response.drivers_championship.slice(0, 5);
+            this.loading = false;
+          },
+          error: () => {
+            this.loading = false;
+          }
+        });
       } else {
         this.f1Service.getConstructorStandings(year).subscribe({
-      next: (response) => {
-        this.standings = response.constructors_championship.slice(0, 5);
-        this.loading = false;
-      },
-      error: (error) => {
-        this.loading = false;
-      }
-    });
+          next: (response) => {
+            this.standings = response.constructors_championship.slice(0, 5);
+            this.loading = false;
+          },
+          error: () => {
+            this.loading = false;
+          }
+        });
       }
     }
   }
