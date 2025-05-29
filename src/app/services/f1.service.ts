@@ -3,8 +3,6 @@ import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs"
 import { tap } from "rxjs/operators"
 import { 
-  TeamList, 
-  TeamDetail, 
   Driver, 
   DriverStanding, 
   ConstructorStanding, 
@@ -13,6 +11,7 @@ import {
   TeamInfoResponse
 } from "../models/f1.models"
 
+// TODO: crear modelos separados para cada entidad posible dentro del sistema.
 interface DriversResponse {
   api: string;
   url: string;
@@ -39,13 +38,7 @@ export class F1Service {
   constructor(private http: HttpClient) {}
 
   getTeams(): Observable<TeamsResponse> {
-    return this.http.get<TeamsResponse>(`${this.apiUrl}/current/teams`).pipe(
-      tap(response => {
-        console.log('Teams API Response:', response);
-        console.log('First team data:', response.teams[0]);
-        console.log('First appearance field:', response.teams[0]?.firstAppeareance);
-      })
-    )
+    return this.http.get<TeamsResponse>(`${this.apiUrl}/current/teams`)
   }
 
   getTeamById(id: string): Observable<TeamInfoResponse> {

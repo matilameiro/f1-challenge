@@ -1,4 +1,3 @@
-// Interfaces para el listado de equipos
 export interface TeamList {
   teamId: string;
   teamName: string;
@@ -19,7 +18,6 @@ export interface TeamsResponse {
   teams: TeamList[];
 }
 
-// Interfaces para el detalle de equipo y pilotos
 export interface TeamDetail {
   teamId: string;
   teamName: string;
@@ -56,7 +54,6 @@ export interface Driver {
   wins?: number;
 }
 
-// Interfaces para el campeonato
 export interface DriverStanding {
   classificationId: number;
   driverId: string;
@@ -77,7 +74,6 @@ export interface ConstructorStanding {
   team: TeamDetail;
 }
 
-// Interfaces para la búsqueda de pilotos
 export interface DriversResponse {
   api: string;
   url: string;
@@ -97,7 +93,6 @@ export interface DriversSearchResponse {
   drivers: Driver[];
 }
 
-// Interfaces para la respuesta del endpoint de equipo específico
 export interface TeamInfo {
   teamId: string;
   teamName: string;
