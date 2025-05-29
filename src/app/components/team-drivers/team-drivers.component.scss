@@ -1,16 +1,17 @@
-.team-drivers-container {
+@import '../../styles/variables';
+
+.team-drivers {
   padding: 24px;
-  max-width: 1400px;
   margin: 0 auto;
 
-  h1 {
+  &__title {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
     color: #333;
   }
 
-  .drivers-grid {
+  &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
@@ -23,7 +24,7 @@
     }
   }
 
-  .driver-card {
+  &__card {
     background: white;
     border-radius: 12px;
     overflow: hidden;
@@ -33,56 +34,67 @@
     &:hover {
       transform: translateY(-5px);
     }
-
-    .driver-header {
-      padding: 20px;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-
-      .driver-number {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #1890ff;
-      }
-
-      .driver-info {
-        flex: 1;
-
-        h3 {
-          margin: 0;
-          font-size: 1.2rem;
-          color: #333;
-        }
-
-        .driver-nationality {
-          color: #666;
-          font-size: 0.9rem;
-          margin-top: 4px;
-        }
-      }
-    }
-
-    .driver-details {
-      padding: 20px;
-
-      p {
-        margin: 8px 0;
-        color: #666;
-
-        strong {
-          color: #333;
-          margin-right: 8px;
-        }
-      }
-    }
   }
 
-  .no-drivers {
+  &__card-header {
+    padding: 20px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $primary-color;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  &__nationality {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  &__card-details {
+    padding: 20px;
+  }
+
+  &__detail {
+    margin: 8px 0;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__detail-label {
+    color: #333;
+    font-weight: 500;
+  }
+
+  &__detail-value {
+    color: #666;
+  }
+
+  &__empty {
     text-align: center;
     padding: 40px 20px;
+  }
+
+  &__empty-message {
     color: #666;
+    font-size: 1.1rem;
   }
 }
 

@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .driver-search {
   padding: 24px;
   max-width: 1200px;
@@ -66,7 +68,7 @@
   }
 
   &__card-avatar {
-    background: #1890ff;
+    background: $primary-color;
     color: white;
     font-weight: bold;
   }

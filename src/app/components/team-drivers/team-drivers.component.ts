@@ -52,7 +52,7 @@ export class TeamDriversComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error('Error loading team:', error);
+        // TODO: se podria loguear el error en algun servicio.
         this.loading = false;
       }
     });

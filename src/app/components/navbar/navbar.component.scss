@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .navbar {
   background-color: #1a1a1a;
   padding: 0 24px;
@@ -6,7 +8,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: $shadow;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,14 +26,14 @@
 
   &__logo {
     h1 {
-      color: white;
+      color: $white-color;
       margin: 0;
       font-size: 1.5rem;
     }
   }
 
   &__title {
-    color: white;
+    color: $white-color;
     margin: 0;
     font-size: 1.5rem;
   }
@@ -47,7 +49,7 @@
   }
 
   &__link {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba($white-color, 0.65);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -57,13 +59,13 @@
     transition: all 0.3s ease;
 
     &:hover {
-      color: white;
-      background: rgba(255, 255, 255, 0.1);
+      color: $white-color;
+      background: rgba($white-color, 0.1);
     }
 
     &--active {
-      color: white;
-      background: rgba(255, 255, 255, 0.1);
+      color: $white-color;
+      background: rgba($white-color, 0.1);
     }
 
     span {
@@ -80,7 +82,7 @@
     right: 0;
     background: #001529;
     padding: 8px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: $shadow;
     z-index: 999;
     opacity: 0;
     visibility: hidden;

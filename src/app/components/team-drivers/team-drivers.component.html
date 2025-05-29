@@ -1,31 +1,37 @@
-<div class="team-drivers-container">
-  <h1>Pilotos de {{ team?.teamName }}</h1>
+<div class="team-drivers">
+  <h1 class="team-drivers__title">Pilotos de {{ team?.teamName }}</h1>
 
   <nz-spin [nzSpinning]="loading">
-    <div class="drivers-grid" *ngIf="drivers.length > 0">
-      <div *ngFor="let driver of drivers" class="driver-card">
-        <div class="driver-header">
-          <div class="driver-number">{{ driver.number }}</div>
-          <div class="driver-info">
-            <h3>{{ driver.name }} {{ driver.surname }}</h3>
-            <div class="driver-nationality">{{ driver.nationality }}</div>
+    @if (drivers.length > 0) {
+      <div class="team-drivers__grid">
+        @for (driver of drivers; track driver.driverId) {
+          <div class="team-drivers__card">
+            <div class="team-drivers__card-header">
+              <div class="team-drivers__number">{{ driver.number }}</div>
+              <div class="team-drivers__info">
+                <h3 class="team-drivers__name">{{ driver.name }} {{ driver.surname }}</h3>
+                <div class="team-drivers__nationality">{{ driver.nationality }}</div>
+              </div>
+            </div>
+            <div class="team-drivers__card-details">
+              <p class="team-drivers__detail">
+                <span class="team-drivers__detail-label">Fecha de nacimiento:</span>
+                <span class="team-drivers__detail-value">{{ driver.birthday }}</span>
+              </p>
+              <p class="team-drivers__detail">
+                <span class="team-drivers__detail-label">Nacionalidad:</span>
+                <span class="team-drivers__detail-value">{{ driver.nationality }}</span>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="driver-details">
-          <p>
-            <strong>Fecha de nacimiento:</strong>
-            {{ driver.birthday }}
-          </p>
-          <p>
-            <strong>Nacionalidad:</strong>
-            {{ driver.nationality }}
-          </p>
-        </div>
+        }
       </div>
-    </div>
+    }
 
-    <div class="no-drivers" *ngIf="!loading && drivers.length === 0">
-      <p>No hay pilotos disponibles para este equipo.</p>
-    </div>
+    @if (!loading && drivers.length === 0) {
+      <div class="team-drivers__empty">
+        <p class="team-drivers__empty-message">No hay pilotos disponibles para este equipo.</p>
+      </div>
+    }
   </nz-spin>
 </div> 
