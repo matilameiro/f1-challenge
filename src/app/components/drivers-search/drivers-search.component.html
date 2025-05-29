@@ -1,39 +1,66 @@
-<div class="drivers-search-container">
-  <div class="search-header">
-    <h1>Búsqueda de Pilotos</h1>
-    <div class="search-input">
+<div class="driver-search">
+  <div class="driver-search__header">
+    <h1 class="driver-search__title">
+      Búsqueda de Pilotos
+    </h1>
+    <div class="driver-search__input-wrapper">
       <input
         nz-input
+        class="driver-search__input"
         [(ngModel)]="searchTerm"
         placeholder="Buscar piloto (mínimo 4 letras)..."
         (ngModelChange)="onSearchInput($event)"
       />
     </div>
-    <p class="search-hint">Ingresa al menos 4 letras para buscar pilotos específicos</p>
+    <p class="driver-search__hint">
+      Ingresa al menos 4 letras para buscar pilotos específicos
+    </p>
   </div>
 
-  <nz-spin [nzSpinning]="loading" nzTip="Cargando pilotos...">
-    <div *ngIf="!loading && searchTerm.length >= 4 && drivers.length === 0" class="no-results">
-      <nz-empty nzNotFoundContent="No se encontraron pilotos"></nz-empty>
+  @if (loading) {
+    <div class="driver-search__loading">
+      <nz-spin nzSimple></nz-spin>
     </div>
-
-    <div *ngIf="drivers.length > 0 && searchTerm.length >= 4" class="drivers-grid">
-      <nz-card *ngFor="let driver of drivers" class="driver-card">
-        <div class="driver-header">
-          <nz-avatar [nzSize]="64">{{ driver.shortName }}</nz-avatar>
-          <div class="driver-info">
-            <h3>{{ driver.name }} {{ driver.surname }}</h3>
-            <p class="driver-number" *ngIf="driver.number">#{{ driver.number }}</p>
-          </div>
-        </div>
-        <div class="driver-stats">
-          <p><strong>Nacionalidad:</strong> {{ driver.nationality }}</p>
-          <p><strong>Fecha de nacimiento:</strong> {{ driver.birthday }}</p>
-        </div>
-        <div class="driver-actions">
-          <a [href]="driver.url" target="_blank" nz-button nzType="primary">Saber más</a>
-        </div>
-      </nz-card>
-    </div>
-  </nz-spin>
+  } @else {
+    @if (searchTerm.length >= 4 && drivers.length === 0) {
+      <div class="driver-search__no-results">
+        <nz-empty nzNotFoundContent="No se encontraron pilotos"></nz-empty>
+      </div>
+    } @else {
+      <div class="driver-search__grid">
+        @for (driver of drivers; track driver.driverId) {
+          <nz-card class="driver-search__card">
+            <div class="driver-search__card-header">
+              <nz-avatar [nzSize]="64" class="driver-search__card-avatar">
+                {{ driver.name.charAt(0) + '' + driver.surname.charAt(0) }}
+              </nz-avatar>
+              <div class="driver-search__card-info">
+                <h3 class="driver-search__card-name">{{ driver.name }} {{ driver.surname }}</h3>
+                @if (driver?.number) {
+                  <p class="driver-search__card-number">
+                    #{{ driver.number }}
+                  </p>
+                }
+              </div>
+            </div>
+            <div class="driver-search__card-stats">
+              <p class="driver-search__card-stat"><strong>Nacionalidad:</strong> {{ driver.nationality }}</p>
+              <p class="driver-search__card-stat"><strong>Fecha de nacimiento:</strong> {{ driver.birthday }}</p>
+            </div>
+            <div class="driver-search__card-actions">
+              <a 
+                [href]="driver.url"
+                target="_blank"
+                nz-button
+                nzType="primary"
+                class="driver-search__card-link"
+              >
+                Saber más
+              </a>
+            </div>
+          </nz-card>
+        }
+      </div>
+    }
+  }
 </div> 

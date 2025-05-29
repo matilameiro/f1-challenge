@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -10,7 +10,15 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { F1Service } from '../../services/f1.service';
 import { Driver } from '../../models/f1.models';
-import { Subject, debounceTime, distinctUntilChanged, switchMap, EMPTY, catchError, of } from 'rxjs';
+import {
+  Subject,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  EMPTY,
+  catchError,
+  of
+} from 'rxjs';
 
 @Component({
   selector: 'app-drivers-search',
@@ -29,7 +37,8 @@ import { Subject, debounceTime, distinctUntilChanged, switchMap, EMPTY, catchErr
   templateUrl: './drivers-search.component.html',
   styleUrls: ['./drivers-search.component.scss']
 })
-export class DriversSearchComponent implements OnInit {
+
+export class DriversSearchComponent {
   searchTerm = '';
   drivers: Driver[] = [];
   loading = false;
@@ -44,8 +53,8 @@ export class DriversSearchComponent implements OnInit {
           if (term.length >= 4) {
             this.loading = true;
             return this.f1Service.searchDriversByName(term).pipe(
-              catchError(error => {
-                console.error('Error searching drivers:', error);
+              catchError(() => {
+                // TODO: loguear error
                 return of({ drivers: [] });
               })
             );
@@ -60,16 +69,12 @@ export class DriversSearchComponent implements OnInit {
           this.drivers = response.drivers || [];
           this.loading = false;
         },
-        error: (error) => {
-          console.error('Error in search subscription:', error);
+        error: () => {
+          // TODO: loguear error
           this.loading = false;
           this.drivers = [];
         }
       });
-  }
-
-  ngOnInit(): void {
-    // No cargamos todos los pilotos al inicio
   }
 
   onSearchInput(term: string): void {
