@@ -32,7 +32,7 @@ export class TeamsComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading teams:', error);
+        // TODO: se podria loguear los errores.
         this.loading = false;
       }
     });

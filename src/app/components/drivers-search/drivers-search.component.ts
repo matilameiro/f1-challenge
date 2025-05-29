@@ -37,7 +37,6 @@ import {
   templateUrl: './drivers-search.component.html',
   styleUrls: ['./drivers-search.component.scss']
 })
-
 export class DriversSearchComponent {
   searchTerm = '';
   drivers: Driver[] = [];

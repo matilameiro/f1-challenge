@@ -1,19 +1,19 @@
-<div class="teams-container">
-  <h1>Equipos de Fórmula 1 - {{ currentYear }}</h1>
+<div class="teams">
+  <h1 class="teams__title">Equipos de Fórmula 1 - {{ currentYear }}</h1>
   
   <nz-spin [nzSpinning]="loading">
-    <div class="teams-grid">
-      <nz-card *ngFor="let team of teams" class="team-card">
-        <h2 class="team-name">{{ team.teamName }}</h2>
-        <h3 class="team-nationality">{{ team.teamNationality }}</h3>
-        <div class="team-info">
-          <p data-label="Primera aparición: ">{{ team.firstAppeareance !== undefined ? team.firstAppeareance : 'N/A' }}</p>
-          <p data-label="Campeonatos de Constructores: ">{{ team.constructorsChampionships || 0 }}</p>
-          <p data-label="Campeonatos de Pilotos: ">{{ team.driversChampionships || 0 }}</p>
+    <div class="teams__grid">
+      <nz-card *ngFor="let team of teams" class="teams__card">
+        <h2 class="teams__card-name">{{ team.teamName }}</h2>
+        <h3 class="teams__card-nationality">{{ team.teamNationality }}</h3>
+        <div class="teams__card-info">
+          <p class="teams__card-detail" data-label="Primera aparición: ">{{ team.firstAppeareance !== undefined ? team.firstAppeareance : 'N/A' }}</p>
+          <p class="teams__card-detail" data-label="Campeonatos de Constructores: ">{{ team.constructorsChampionships || 0 }}</p>
+          <p class="teams__card-detail" data-label="Campeonatos de Pilotos: ">{{ team.driversChampionships || 0 }}</p>
         </div>
-        <div class="card-actions">
-          <a [href]="team.url" target="_blank" nz-button nzType="primary">Saber más</a>
-          <a [routerLink]="['/teams', team.teamId, 'drivers']" nz-button nzType="link">Conocer conductores</a>
+        <div class="teams__card-actions">
+          <a [href]="team.url" target="_blank" nz-button nzType="link">Saber más</a>
+          <a [routerLink]="['/teams', team.teamId, 'drivers']" nz-button nzType="primary">Conocer conductores</a>
         </div>
       </nz-card>
     </div>
