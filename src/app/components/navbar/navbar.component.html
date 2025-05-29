@@ -1,32 +1,32 @@
-<header class="app-header">
-  <div class="header-content">
-    <button nz-button nzType="primary" class="mobile-menu-button" (click)="toggleCollapsed()">
+<header class="navbar">
+  <div class="navbar__content">
+    <button nz-button nzType="primary" class="navbar__menu-button" (click)="toggleCollapsed($event)">
       <span nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
     </button>
-    <div class="logo-container">
-      <h1>F1 Challenge</h1>
+    <div class="navbar__logo">
+      <h1 class="navbar__title">F1 Challenge</h1>
     </div>
   </div>
   
-  <!-- Menú desktop -->
-  <ul nz-menu nzMode="horizontal" nzTheme="dark" class="desktop-menu">
-    <li nz-menu-item routerLink="/" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
+  <!-- Menu desktop -->
+  <nav class="navbar__desktop-links">
+    <a routerLink="/" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{exact: true}" class="navbar__link">
       <span nz-icon nzType="team" nzTheme="outline"></span>
       <span>Equipos</span>
-    </li>
-    <li nz-menu-item routerLink="/drivers" routerLinkActive="ant-menu-item-selected">
+    </a>
+    <a routerLink="/drivers" routerLinkActive="navbar__link--active" class="navbar__link">
       <span nz-icon nzType="user" nzTheme="outline"></span>
       <span>Pilotos</span>
-    </li>
-    <li nz-menu-item routerLink="/standings" routerLinkActive="ant-menu-item-selected">
+    </a>
+    <a routerLink="/standings" routerLinkActive="navbar__link--active" class="navbar__link">
       <span nz-icon nzType="trophy" nzTheme="outline"></span>
       <span>Posiciones</span>
-    </li>
-  </ul>
+    </a>
+  </nav>
 
-  <!-- Menú móvil -->
-  <div class="mobile-menu-wrapper" [class.show]="!isCollapsed">
-    <ul nz-menu nzMode="inline" nzTheme="dark" class="mobile-menu">
+  <!-- Menú mobile -->
+  <div class="navbar__mobile-menu" [class.navbar__mobile-menu--show]="!isCollapsed">
+    <ul nz-menu nzMode="inline" nzTheme="dark" class="navbar__mobile-list">
       <li nz-menu-item routerLink="/" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">
         <span nz-icon nzType="team" nzTheme="outline"></span>
         <span>Equipos</span>

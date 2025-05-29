@@ -40,7 +40,6 @@ export class StandingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Generate last 10 years
     const currentYear = new Date().getFullYear();
     this.years = Array.from({ length: 10 }, (_, i) => currentYear - i);
     this.standingsForm.patchValue({ year: currentYear.toString() });
@@ -72,26 +71,24 @@ export class StandingsComponent implements OnInit {
 
       if (type === 'drivers') {
         this.f1Service.getDriverStandings(year).subscribe({
-          next: (response) => {
-            this.standings = response.drivers_championship.slice(0, 5);
-            this.loading = false;
-          },
-          error: (error) => {
-            console.error('Error loading driver standings:', error);
-            this.loading = false;
-          }
-        });
+      next: (response) => {
+        this.standings = response.drivers_championship.slice(0, 5);
+        this.loading = false;
+      },
+      error: (error) => {
+        this.loading = false;
+      }
+    });
       } else {
         this.f1Service.getConstructorStandings(year).subscribe({
-          next: (response) => {
-            this.standings = response.constructors_championship.slice(0, 5);
-            this.loading = false;
-          },
-          error: (error) => {
-            console.error('Error loading constructor standings:', error);
-            this.loading = false;
-          }
-        });
+      next: (response) => {
+        this.standings = response.constructors_championship.slice(0, 5);
+        this.loading = false;
+      },
+      error: (error) => {
+        this.loading = false;
+      }
+    });
       }
     }
   }

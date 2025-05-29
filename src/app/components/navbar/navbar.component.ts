@@ -20,16 +20,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+
+
+export class NavbarComponent {
   isCollapsed = true;
+  private menuButton: HTMLElement | null = null;
 
   constructor(private elementRef: ElementRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.menuButton = this.elementRef.nativeElement.querySelector('.navbar__menu-button');
+  }
 
-  ngOnDestroy(): void {}
-
-  toggleCollapsed(): void {
+  toggleCollapsed(event: Event): void {
+    event.stopPropagation();
     this.isCollapsed = !this.isCollapsed;
   }
 
@@ -39,6 +43,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event): void {
+    if (this.menuButton?.contains(event.target as Node)) {
+      return;
+    }
+
+    const mobileMenu = this.elementRef.nativeElement.querySelector('.navbar__mobile-menu');
+    if (mobileMenu?.contains(event.target as Node)) {
+      return;
+    }
+
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.closeMenu();
     }
