@@ -3,7 +3,7 @@
     <h1 class="driver-search__title">
       Búsqueda de Pilotos
     </h1>
-    <div class="driver-search__input-wrapper">
+    <nz-card class="driver-search__form">
       <input
         nz-input
         class="driver-search__input"
@@ -11,7 +11,7 @@
         placeholder="Buscar piloto (mínimo 4 letras)..."
         (ngModelChange)="onSearchInput($event)"
       />
-    </div>
+    </nz-card>
   </div>
 
   @if (loading) {

@@ -1,1 +1,10 @@
 // Keyframes para animaciones.
+@keyframes cardHover {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-5px);
+  }
+}

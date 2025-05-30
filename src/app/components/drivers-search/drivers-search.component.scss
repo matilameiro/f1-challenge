@@ -1,57 +1,60 @@
 @import '../../styles/variables';
+@import '../../styles/animations';
 
 .driver-search {
   padding: 24px;
-  max-width: 1200px;
   margin: 0 auto;
 
   &__header {
-    text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
   }
 
   &__title {
+    text-align: center;
     font-size: 2rem;
-    color: #333;
-    margin-bottom: 24px;
+    margin-bottom: 2rem;
+    color: $text-color;
   }
 
-  &__input-wrapper {
-    max-width: 500px;
+  &__form {
+    max-width: 600px;
     margin: 0 auto;
+
+    ::ng-deep {
+      .ant-card {
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
   }
 
   &__input {
     width: 100%;
   }
 
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
-    padding: 0;
-  }
-
-  &__loading {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  &__no-results {
-    text-align: center;
-    padding: 48px 0;
+    padding: 24px;
   }
 
   &__card {
-    height: 100%;
-    transition: all 0.3s ease;
+    background: white;
     border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      animation: cardHover 0.3s ease forwards;
     }
   }
 
@@ -65,7 +68,8 @@
   &__card-avatar {
     background: $primary-color;
     color: white;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 500;
   }
 
   &__card-info {
@@ -73,39 +77,66 @@
   }
 
   &__card-name {
-    margin: 0;
     font-size: 1.2rem;
+    font-weight: 500;
     color: #333;
-    line-height: 1.4;
+    margin: 0;
   }
 
   &__card-number {
-    margin: 4px 0 0;
+    font-size: 1rem;
     color: #666;
-    font-size: 0.9rem;
+    margin: 4px 0 0;
   }
 
   &__card-stats {
-    margin-bottom: 16px;
-    padding: 12px;
-    background: #f5f5f5;
-    border-radius: 8px;
+    margin: 16px 0;
   }
 
   &__card-stat {
     margin: 8px 0;
     color: #666;
-    font-size: 0.9rem;
   }
 
   &__card-actions {
-    text-align: center;
+    display: flex;
+    justify-content: stretch;
+    margin-top: 16px;
   }
 
   &__card-link {
+    text-decoration: none;
     width: 100%;
   }
+
+  &__no-results {
+    text-align: center;
+    padding: 24px;
+  }
 }
+
+@media (max-width: 480px) {
+  .driver-search {
+    padding: 10px;
+
+    &__title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__form {
+      [nzBodyStyle] {
+        padding: 16px;
+      }
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      padding: 10px;
+    }
+  }
+}
+
 // Mobile
 @media (max-width: 768px) {
   .driver-search {
