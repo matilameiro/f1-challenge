@@ -5,12 +5,12 @@ Aplicación Angular + NG-Zorro para explorar equipos, pilotos y clasificaciones 
 ## Funcionalidades
 - Listado de equipos actuales
 - Detalle de pilotos por equipo
-- Buscador de pilotos por año, nombre y apellido
+- Buscador de pilotos nombre o apellido
 - Acceso a Wikipedia de cada piloto
-- Gráficos de los 5 primeros pilotos y constructores por año
+- Listado de los 5 primeros pilotos o constructores por año
 
 ## Tecnologías
-- Angular 17+ (standalone components)
+- Angular 19+ (standalone components)
 - NG-Zorro
 - API pública: https://f1api.dev/es
 
