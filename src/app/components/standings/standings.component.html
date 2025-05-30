@@ -24,7 +24,11 @@
     </div>
   </form>
 
-  <nz-spin [nzSpinning]="loading">
+  @if (loading) {
+    <div class="standings__loading">
+      <nz-spin nzSimple></nz-spin>
+    </div>
+  } @else {
     @if (standings.length > 0) {
       <div class="standings__grid">
         @for (standing of standings; track standing.position) {
@@ -37,7 +41,7 @@
               <div class="standings__position">{{ standing.position }}</div>
               <h3 class="standings__name">{{ getStandingName(standing) }}</h3>
               @if (selectedType === 'drivers') {
-              <p class="standings__team">{{ getTeamName(standing) }}</p>
+                <p class="standings__team">{{ getTeamName(standing) }}</p>
               }
             </div>
             <div class="standings__card-details">
@@ -54,5 +58,5 @@
         }
       </div>
     }
-  </nz-spin>
+  }
 </div>

@@ -8,7 +8,14 @@
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: #333;
+    color: $text-color;
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
   }
 
   &__grid {
@@ -97,10 +104,3 @@
     font-size: 1.1rem;
   }
 }
-
-// Estilos para el spinner de carga
-::ng-deep .ant-spin-container {
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-} 

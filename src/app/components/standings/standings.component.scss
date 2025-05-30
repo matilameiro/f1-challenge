@@ -1,44 +1,45 @@
+@import '../../styles/variables';
+
 .standings {
   padding: 24px;
-  max-width: 1400px;
   margin: 0 auto;
 
   &__title {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: #333;
+    color: $text-color;
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
   }
 
   &__form {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto 2rem;
-    padding: 20px;
+    padding: 24px;
+    background: white;
     border-radius: 12px;
-
-    @media (max-width: 768px) {
-      padding: 15px;
-    }
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   &__form-row {
     display: flex;
     gap: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 0;
 
     @media (max-width: 768px) {
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
     }
   }
 
   &__form-item {
     flex: 1;
-    width: 50%;
-
-    @media (max-width: 768px) {
-      width: 100%;
-    }
 
     ::ng-deep {
       .ant-select {
@@ -48,31 +49,22 @@
   }
 
   &__form-actions {
-    text-align: center;
-    margin-top: 24px;
-
-    button {
-      min-width: 200px;
-      height: 40px;
-      font-size: 1.1rem;
-    }
+    display: flex;
+    justify-content: center;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    padding: 16px 0;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    padding: 24px;
   }
 
   &__card {
+    background: white;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #d9d9d9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 
     &:hover {
@@ -80,39 +72,29 @@
     }
 
     &--position-1 {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      .standings__position {
-        color: #B8860B;
-      }
+      background: linear-gradient(to bottom, #ffd700, white);
     }
 
     &--position-2 {
-      background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%);
-      .standings__position {
-        color: #696969;
-      }
+      background: linear-gradient(to bottom, #c0c0c0, white);
     }
 
     &--position-3 {
-      background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
-      .standings__position {
-        color: #654321;
-      }
+      background: linear-gradient(to bottom, #cd7f32, white);
     }
 
-    &--position-4,
+    &--position-4 {
+      background: linear-gradient(to bottom, #e0e0e0, white);
+    }
+
     &--position-5 {
-      background: linear-gradient(135deg, #E8E8E8 0%, #D3D3D3 100%);
-      .standings__position {
-        color: #808080;
-      }
+      background: linear-gradient(to bottom, #f0f0f0, white);
     }
   }
 
   &__card-header {
-    padding: 16px;
+    padding: 20px;
     text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   &__position {
@@ -156,12 +138,6 @@
   }
 }
 
-::ng-deep .ant-spin-container {
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-}
-
 @media (max-width: 480px) {
   .standings {
     padding: 10px;
@@ -172,7 +148,7 @@
     }
 
     &__form {
-      padding: 12px;
+      padding: 24px;
     }
 
     &__form-row {
@@ -184,186 +160,3 @@
     }
   }
 }
-
-.podium-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 20px;
-  margin: 40px 0;
-  min-height: 300px;
-
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 30px 0;
-  }
-
-  .podium-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
-
-    .position {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #1890ff;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .podium-box {
-      width: 120px;
-      background: #f5f5f5;
-      border-radius: 8px 8px 0 0;
-      padding: 16px;
-      text-align: center;
-      position: relative;
-
-      @media (max-width: 768px) {
-        width: 100px;
-        padding: 12px;
-      }
-
-      .name {
-        font-weight: bold;
-        margin-bottom: 8px;
-        color: #333;
-      }
-
-      .points {
-        color: #666;
-        font-size: 0.9rem;
-      }
-    }
-
-    &:nth-child(1) .podium-box {
-      height: 200px;
-      background: linear-gradient(to bottom, #ffd700, #f5f5f5);
-    }
-
-    &:nth-child(2) .podium-box {
-      height: 160px;
-      background: linear-gradient(to bottom, #c0c0c0, #f5f5f5);
-    }
-
-    &:nth-child(3) .podium-box {
-      height: 120px;
-      background: linear-gradient(to bottom, #cd7f32, #f5f5f5);
-    }
-
-    &:nth-child(4) .podium-box {
-      height: 100px;
-    }
-
-    &:nth-child(5) .podium-box {
-      height: 80px;
-    }
-  }
-}
-
-.no-standings {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 32px;
-  color: #1a1a1a;
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-
-nz-card {
-  margin-bottom: 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-nz-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-label {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-select {
-  margin-left: 8px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  border: 1px solid #d9d9d9;
-  font-size: 1rem;
-}
-
-select:focus {
-  outline: none;
-  border-color: #1890ff;
-  box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
-}
-
-th {
-  background: #fafafa !important;
-  font-weight: 600 !important;
-  color: #1a1a1a !important;
-}
-
-td {
-  color: #666 !important;
-}
-
-tr:hover td {
-  background: #f5f5f5 !important;
-}
-
-.other-positions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 32px;
-}
-
-.position-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 24px;
-  background: #f0f2f5;
-  border-radius: 8px;
-  min-width: 300px;
-
-  .position {
-    font-size: 24px;
-    font-weight: bold;
-    color: #666;
-  }
-
-  .info {
-    flex: 1;
-
-    .name {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .points {
-      font-size: 14px;
-      color: #666;
-    }
-  }
-} 

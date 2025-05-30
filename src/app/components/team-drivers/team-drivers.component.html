@@ -1,8 +1,11 @@
 <div class="team-drivers">
-  <h1 class="team-drivers__title">Pilotos de {{ team?.teamName }}</h1>
-
-  <nz-spin [nzSpinning]="loading">
+  @if (loading) {
+    <div class="team-drivers__loading">
+      <nz-spin nzSimple></nz-spin>
+    </div>
+  } @else {
     @if (drivers.length > 0) {
+      <h1 class="team-drivers__title">Pilotos de {{ team?.teamName }}</h1>
       <div class="team-drivers__grid">
         @for (driver of drivers; track driver.driverId) {
           <div class="team-drivers__card">
@@ -10,13 +13,12 @@
               <div class="team-drivers__number">{{ driver.number }}</div>
               <div class="team-drivers__info">
                 <h3 class="team-drivers__name">{{ driver.name }} {{ driver.surname }}</h3>
-                <div class="team-drivers__nationality">{{ driver.nationality }}</div>
               </div>
             </div>
             <div class="team-drivers__card-details">
               <p class="team-drivers__detail">
                 <span class="team-drivers__detail-label">Fecha de nacimiento:</span>
-                <span class="team-drivers__detail-value">{{ driver.birthday }}</span>
+                <span class="team-drivers__detail-value">{{ formatDate(driver.birthday) }}</span>
               </p>
               <p class="team-drivers__detail">
                 <span class="team-drivers__detail-label">Nacionalidad:</span>
@@ -33,5 +35,5 @@
         <p class="team-drivers__empty-message">No hay pilotos disponibles para este equipo.</p>
       </div>
     }
-  </nz-spin>
+  }
 </div> 

@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .teams {
-  padding: 0;
+  padding: 24px;
   margin: 0 auto;
 
   &__title {
@@ -11,9 +11,16 @@
     color: $text-color;
   }
 
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
     padding: 24px;
   }
@@ -88,15 +95,9 @@
   }
 }
 
-::ng-deep .ant-spin-container {
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-}
-
 @media (max-width: 768px) {
   .teams {
-    padding: 8px;
+    padding: 0;
 
     &__grid {
       gap: 16px;
@@ -111,242 +112,5 @@
     &__card-nationality {
       font-size: 16px;
     }
-  }
-}
-
-.teams-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-
-  .teams-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      padding: 10px 0;
-    }
-
-    .team-card {
-      transition: transform 0.3s, box-shadow 0.3s;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .team-header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 16px;
-
-        nz-avatar {
-          background: $primary-color;
-          color: $white-color;
-          font-weight: bold;
-        }
-
-        .team-info {
-          flex: 1;
-
-          h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: #333;
-            line-height: 1.4;
-          }
-
-          .team-country {
-            margin: 4px 0 0;
-            color: #666;
-            font-size: 0.9rem;
-          }
-        }
-      }
-
-      .team-stats {
-        margin-bottom: 16px;
-        padding: 12px;
-        background: #f5f5f5;
-        border-radius: 8px;
-
-        p {
-          margin: 8px 0;
-          color: #666;
-          font-size: 0.9rem;
-
-          strong {
-            color: #333;
-          }
-        }
-      }
-    }
-  }
-
-  .no-teams {
-    text-align: center;
-    padding: 40px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .teams-container {
-    padding: 8px;
-
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .team-card {
-      .team-header {
-        .team-info {
-          h3 {
-            font-size: 1.1rem;
-          }
-        }
-      }
-
-      .team-stats {
-        padding: 8px;
-        
-        p {
-          font-size: 0.85rem;
-        }
-      }
-    }
-  }
-}
-
-.team-logo-container {
-  background: #fafafa;
-  padding: 24px;
-  text-align: center;
-  margin: -24px -24px 16px -24px;
-}
-
-.team-logo { 
-  width: 100%;
-  height: 160px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.team-card:hover .team-logo {
-  transform: scale(1.05);
-}
-
-.team-content {
-  margin-top: 16px;
-}
-
-.team-actions {
-  margin-top: 16px;
-  text-align: right;
-}
-
-.team-name {
-  font-size: 24px;
-  margin: -24px -24px 8px -24px;
-  padding: 16px;
-  color: white;
-  height: 72px;
-  display: -webkit-box;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.2;
-  background-color: #1a1a1a;
-}
-
-.team-nationality {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 16px;
-  height: 24px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.team-info {
-  text-align: left;
-  margin-bottom: 24px;
-  flex: 1;
-  padding: 0 16px;
-  
-  p {
-    margin: 8px 0;
-    color: #333;
-
-    &::before {
-      content: attr(data-label);
-      font-weight: bold;
-      margin-right: 4px;
-    }
-  }
-}
-
-.card-actions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: auto;
-  padding: 16px;
-  background-color: white;
-  margin: 24px -24px -24px -24px;
-  border-top: 1px solid #e8e8e8;
-}
-
-::ng-deep {
-  .ant-card-meta-title {
-    font-size: 1.25rem !important;
-    margin-bottom: 8px !important;
-  }
-  .ant-card-meta-description {
-    color: $dark-grey-color;
-    font-size: 0.9rem;
-  }
-  .ant-descriptions-item-label {
-    color: $grey-color;
-    font-size: 0.8rem;
-  }
-  .ant-descriptions-item-content {
-    color: $text-color;
-  }
-}
-
-@media (max-width: 480px) {
-  .teams-container {
-    padding: 16px;
-  }
-
-  .teams-grid {
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .team-name {
-    font-size: 20px;
-    height: 60px;
-  }
-
-  .team-nationality {
-    font-size: 16px;
   }
 } 

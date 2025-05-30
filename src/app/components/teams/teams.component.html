@@ -1,7 +1,11 @@
 <div class="teams">
   <h1 class="teams__title">Equipos de Fórmula 1 - {{ currentYear }}</h1>
   
-  <nz-spin [nzSpinning]="loading">
+  @if (loading) {
+    <div class="teams__loading">
+      <nz-spin nzSimple></nz-spin>
+    </div>
+  } @else {
     <div class="teams__grid">
       <nz-card *ngFor="let team of teams" class="teams__card">
         <h2 class="teams__card-name">{{ team.teamName }}</h2>
@@ -17,5 +21,5 @@
         </div>
       </nz-card>
     </div>
-  </nz-spin>
+  }
 </div> 

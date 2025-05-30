@@ -40,6 +40,28 @@ export class TeamDriversComponent implements OnInit {
     }
   }
 
+  formatDate(dateString: string): string {
+    if (!dateString) return '';
+    
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateString)) {
+      return dateString;
+    }
+
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+      const [year, month, day] = dateString.split('-');
+      return `${day}/${month}/${year}`;
+    }
+
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return '';
+
+    return date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  }
+
   private loadTeamAndDrivers(teamId: string): void {
     this.loading = true;
     this.f1Service.getTeamById(teamId).subscribe({
