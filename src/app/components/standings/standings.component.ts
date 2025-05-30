@@ -5,6 +5,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { F1Service } from '../../services/f1.service';
 import { DriverStanding, ConstructorStanding } from '../../models/f1.models';
 
@@ -17,7 +18,8 @@ import { DriverStanding, ConstructorStanding } from '../../models/f1.models';
     NzSpinModule,
     NzButtonModule,
     NzFormModule,
-    NzSelectModule
+    NzSelectModule,
+    NzCardModule
   ],
   templateUrl: './standings.component.html',
   styleUrls: ['./standings.component.scss']

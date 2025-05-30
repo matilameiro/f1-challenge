@@ -1,28 +1,30 @@
 <div class="standings">
   <h1 class="standings__title">Posiciones - {{ standingsForm.get('year')?.value || 'Seleccionar año' }}</h1>
 
-  <form [formGroup]="standingsForm" (ngSubmit)="loadStandings()" class="standings__form">
-    <div class="standings__form-row">
-      <nz-form-item class="standings__form-item">
-        <nz-select formControlName="year" nzPlaceHolder="Seleccionar año" nzAllowClear="false">
-          <nz-option *ngFor="let year of years" [nzValue]="year.toString()" [nzLabel]="year.toString()"></nz-option>
-        </nz-select>
-      </nz-form-item>
+  <nz-card class="standings__form">
+    <form [formGroup]="standingsForm" (ngSubmit)="loadStandings()">
+      <div class="standings__form-row">
+        <nz-form-item class="standings__form-item">
+          <nz-select formControlName="year" nzPlaceHolder="Seleccionar año" nzAllowClear="false">
+            <nz-option *ngFor="let year of years" [nzValue]="year.toString()" [nzLabel]="year.toString()"></nz-option>
+          </nz-select>
+        </nz-form-item>
 
-      <nz-form-item class="standings__form-item">
-        <nz-select formControlName="type" nzPlaceHolder="Seleccionar tipo" nzAllowClear="false">
-          <nz-option nzValue="drivers" nzLabel="Pilotos"></nz-option>
-          <nz-option nzValue="constructors" nzLabel="Equipos"></nz-option>
-        </nz-select>
-      </nz-form-item>
-    </div>
+        <nz-form-item class="standings__form-item">
+          <nz-select formControlName="type" nzPlaceHolder="Seleccionar tipo" nzAllowClear="false">
+            <nz-option nzValue="drivers" nzLabel="Pilotos"></nz-option>
+            <nz-option nzValue="constructors" nzLabel="Equipos"></nz-option>
+          </nz-select>
+        </nz-form-item>
+      </div>
 
-    <div class="standings__form-actions">
-      <button nz-button nzType="primary" type="submit" [nzLoading]="loading">
-        Buscar Posiciones
-      </button>
-    </div>
-  </form>
+      <div class="standings__form-actions">
+        <button nz-button nzType="primary" type="submit" [nzLoading]="loading">
+          Buscar Posiciones
+        </button>
+      </div>
+    </form>
+  </nz-card>
 
   @if (loading) {
     <div class="standings__loading">
